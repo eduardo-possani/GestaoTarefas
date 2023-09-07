@@ -27,30 +27,19 @@ class TarefaController extends Controller
     
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'titulo' => 'string',
-        'descricao' => 'string',
-        'data_vencimento' => 'date',
-        'status' => 'in:Pendente,Completa',
-    ]);
-
-    $tarefa = Tarefa::findOrFail($id);
-    $tarefa->update($request->all());
-
-    return response()->json(['message' => 'Tarefa atualizada com sucesso'], 200);
-}
+    {
+        $tarefa = Tarefa::findOrFail($id);
+        $tarefa->update($request->all());
+    
+        return response()->json(['message' => 'Tarefa atualizada com sucesso'], 200);
+    }
+    
 
 public function create(Request $request)
 {
-    $request->validate([
-        'titulo' => 'required|string',
-        'descricao' => 'required|string',
-        'data_vencimento' => 'required|date',
-        'status' => 'required|in:Pendente,Completa',
-    ]);
-    Tarefa::create($request->all());
-    return response()->json(['message' => 'Tarefa criada com sucesso'], 201);
+    $data = $request->only(['titulo', 'descricao', 'data_vencimento', 'status']);
+    $novaTarefa = Tarefa::create($data);
+    return response()->json(['message' => 'Registro criado com sucesso', 'data' => $novaTarefa], 201);
 }
 
 
