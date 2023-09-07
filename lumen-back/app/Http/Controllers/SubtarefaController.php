@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Subtarefa; 
+use App\Models\Subtarefa;
+use App\Models\Tarefa; 
 
 class SubtarefaController extends Controller
 {
@@ -33,11 +34,21 @@ class SubtarefaController extends Controller
     }
     
     
-    public function create(Request $request)
+    public function create(Request $request, $id)
     {
-        $data = $request->only(['titulo', 'descricao', 'data_vencimento', 'status']);
-        $novaTarefa = Subtarefa::create($data);
-        return response()->json(['message' => 'Registro criado com sucesso', 'data' => $novaTarefa], 201);
-    }
+    $novaSubtarefa = new Subtarefa([
+        'titulo' => $request->input('titulo'),
+        'descricao' => $request->input('descricao'),
+        'data_vencimento' => $request->input('data_vencimento'),
+        'status' => $request->input('status'),
+    ]);  
+    $tarefaPai = Tarefa::findOrFail($id);
+
+    $tarefaPai->subtarefas()->save($novaSubtarefa);
+
+    return response()->json(['message' => 'Subtarefa criada com sucesso', 'data' => $novaSubtarefa], 201);
+}
+
+
 
 }
