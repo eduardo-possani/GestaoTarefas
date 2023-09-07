@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subtarefa; 
 
-class SubtarefasController extends Controller
+class SubtarefaController extends Controller
 {
     public function busca(){
         $subtarefas = Subtarefa::all();
