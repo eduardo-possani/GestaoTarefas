@@ -21,7 +21,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Rotas para SubtarefasController
     $router->get('/buscasub', 'SubtarefaController@busca');
-    $router->post('/criasub', 'SubtarefaController@create');
+    $router->post('/criarsub', 'SubtarefaController@create');
     $router->put('/atualizasub/{id}', 'SubtarefaController@update');
     $router->delete('/deletasub/{id}', 'SubtarefaController@apreensao');
 });

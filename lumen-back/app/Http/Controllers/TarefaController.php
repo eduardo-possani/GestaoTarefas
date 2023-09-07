@@ -26,14 +26,14 @@ class TarefaController extends Controller
     }
     
 
-    public function update(Request $request, $id)
-    {
-        $tarefa = Tarefa::findOrFail($id);
-        $tarefa->update($request->all());
-    
-        return response()->json(['message' => 'Tarefa atualizada com sucesso'], 200);
-    }
-    
+public function update(Request $request, $id)
+{
+    $tarefa = Tarefa::findOrFail($id);
+    $tarefa->update($request->all());
+
+    return response()->json(['message' => 'Tarefa atualizada com sucesso'], 200);
+}
+
 
 public function create(Request $request)
 {

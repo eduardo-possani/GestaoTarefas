@@ -26,29 +26,18 @@ class SubtarefaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'titulo' => 'string',
-            'descricao' => 'string',
-            'data_vencimento' => 'date',
-            'status' => 'in:Pendente,Completa',
-        ]);
-
-        $subtarefa = Subtarefa::findOrFail($id);
-        $subtarefa->update($request->all());
-
+        $tarefa = Subtarefa::findOrFail($id);
+        $tarefa->update($request->all());
+    
         return response()->json(['message' => 'Subtarefa atualizada com sucesso'], 200);
     }
-
- public function create(Request $request)
-{
-    // Obtenha os dados da solicitação
-    $data = $request->only(['titulo', 'descricao', 'data_vencimento', 'status']);
-
-    // Crie um novo registro no banco de dados usando os dados da solicitação
-    $novaTarefa = SuaModel::create($data);
-
-    // Retorne uma resposta JSON com o novo registro criado
-    return response()->json(['message' => 'Registro criado com sucesso', 'data' => $novaTarefa], 201);
-}
+    
+    
+    public function create(Request $request)
+    {
+        $data = $request->only(['titulo', 'descricao', 'data_vencimento', 'status']);
+        $novaTarefa = Subtarefa::create($data);
+        return response()->json(['message' => 'Registro criado com sucesso', 'data' => $novaTarefa], 201);
+    }
 
 }
