@@ -15,7 +15,7 @@ use App\Http\Controllers\SubtarefaController;
 $router->group(['prefix' => 'api'], function () use ($router) {
     // Rotas para TarefaController
     $router->get('/busca', 'TarefaController@busca');
-    $router->post('/ciar', 'TarefaController@create');
+    $router->post('/criar', 'TarefaController@create');
     $router->put('/atualizar/{id}', 'TarefaController@update');
     $router->delete('/deletar/{id}', 'TarefaController@apreensao');
 
