@@ -10,7 +10,7 @@ $router->get('/', function () use ($router) {
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 use App\Http\Controllers\TarefaController;
-use App\Http\Controllers\SubtarefasController;
+use App\Http\Controllers\SubtarefaController;
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     // Rotas para TarefaController
@@ -20,8 +20,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->delete('/deletar/{id}', 'TarefaController@apreensao');
 
     // Rotas para SubtarefasController
-    $router->get('/buscasub', 'SubtarefasController@busca');
-    $router->post('/criasub', 'SubtarefasController@create');
-    $router->put('/atualizasub/{id}', 'SubtarefasController@update');
-    $router->delete('/deletasub/{id}', 'SubtarefasController@apreensao');
+    $router->get('/buscasub', 'SubtarefaController@busca');
+    $router->post('/criasub', 'SubtarefaController@create');
+    $router->put('/atualizasub/{id}', 'SubtarefaController@update');
+    $router->delete('/deletasub/{id}', 'SubtarefaController@apreensao');
 });
