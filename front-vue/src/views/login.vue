@@ -3,7 +3,7 @@
         <div class="content">
 
             <!-- carde onde fica o emoji e o hover e o cadastro  -->
-            <!-- <div class="card-hover">
+            <div class="card-hover">
                 <div class="content-card">
                     <div class="div-svg">
                         <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -28,19 +28,14 @@
                     </div>
 
                 </div>
-            </div> -->
+            </div>
 
             <!-- login e hover quando o usuario for fazer cadastro -->
             <div class="card-login">
                 <div class="content-card">
-                        {{ address }}
-                        <br>
-                        <input  v-model="address" placeholder="seu endereço">
-                        <br>
-                        <button @click="geocodeAddress()">Mostrar no Mapa</button>
-                        <div  id="map">
+  
 
-                        </div>
+
                 </div>
             </div>
 
@@ -56,43 +51,10 @@ export default {
     },
     data(){
         return{
-            address: "",
-            map: null,
-            geocoder: null,
         }
     },
-    mounted() {
-    this.initMap();
-  },
   methods: {
-    initMap() {
-      this.map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 0,
-        center: { lat: 0, lng: 0 },
-      });
-      this.geocoder = new google.maps.Geocoder();
-    },
-
-    geocodeAddress() {
-  this.geocoder.geocode({ address: this.address }, (results, status) => {
-    if (status === "OK") {
-      const location = results[0].geometry.location;
-
-      if (this.marker) {
-        this.marker.setMap(null);
-      }
-      this.map.setCenter(location);
-      this.marker = new google.maps.Marker({
-        map: this.map,
-        position: location,
-      });
-
-      this.map.setZoom(15);
-    } else {
-      alert("Não foi possível encontrar o endereço.");
-    }
-  });
-}
+    
   },
 }
 
